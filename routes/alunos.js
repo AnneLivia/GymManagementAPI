@@ -161,6 +161,17 @@ module.exports = app => {
       }
     }
 
+    // remover as avaliacoes referentes ao aluno a ser removido, se houver, também, já que esse aluno não existe mais
+    let avaliacaoLista = await conexao.collection("anne_gym_avaliacao_fisica").get()
+
+    for (let avaDoc of avaliacaoLista.docs) {
+      // se o dado contiver o id do aluno, remover a avaliacao
+      var avaData = avaDoc.data();
+      if (avaData.idAluno == idAluno) {
+        let deleteDoc = await conexao.collection("anne_gym_avaliacao_fisica").doc(avaDoc.id).delete()
+      }
+    }
+
     res.send("Aluno removido do sistema");
   });
 
