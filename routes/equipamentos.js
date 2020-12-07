@@ -6,7 +6,7 @@ module.exports = app => {
   var jsonParser = bodyParser.json()
 
   // cadastrar equipamentos (funcionando)
-  app.post('/equipamentos', jsonParser, async function(req, res) {
+  app.post('/equipamentos', jsonParser, async function (req, res) {
 
     var nomeEquipamento = req.body.nome
     var precoEquipamento = req.body.preco
@@ -96,7 +96,7 @@ module.exports = app => {
   });
 
   // atualizar equipamento passando id do equipamneto
-  app.put('/equipamentos/:idEquipamento', jsonParser, async function(req, res) {
+  app.put('/equipamentos/:idEquipamento', jsonParser, async function (req, res) {
 
     var idEquipamentoRecebido = req.params.idEquipamento
 

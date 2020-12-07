@@ -6,7 +6,7 @@ module.exports = app => {
   var jsonParser = bodyParser.json()
 
   // cadastrar avaliacao fisica de determinado aluno (funcionando)
-  app.post('/avaliacao_fisica', jsonParser, async function(req, res) {
+  app.post('/avaliacao_fisica', jsonParser, async function (req, res) {
 
     var id_aluno = req.body.idAluno
     // responsavel pela avaliação
@@ -76,7 +76,7 @@ module.exports = app => {
 
   // obter todos as avaliacoes físicas de um determinado aluno (passar email de aluno) (funcionando)
   app.get("/avaliacao_fisica/aluno/email/:email", async (req, res) => {
-   
+
     const conexao = admin.firestore();
 
     // pegar id do doc do aluno com o email especificado
@@ -122,15 +122,15 @@ module.exports = app => {
   });
 
 
-   // obter todos as avaliacoes físicas realizadas por um determinado instrutor (passar email do instrutor) (funcionando)
+  // obter todos as avaliacoes físicas realizadas por um determinado instrutor (passar email do instrutor) (funcionando)
   app.get("/avaliacao_fisica/instrutor/email/:email", async (req, res) => {
-   
+
     const conexao = admin.firestore();
 
     // pegar id do doc do instrutor com o email especificado
     var idInstrutorDoc = ""
 
-    var emailInstrutor= req.params.email
+    var emailInstrutor = req.params.email
 
     // busca em todos os itens da coleção instrutor, o email especificado (await aguarda até obter todos os dados)
     let instrutoresLista = await conexao.collection("anne_gym_instrutores").get()
@@ -171,7 +171,7 @@ module.exports = app => {
 
 
   // atualizar avalicao fisica passando id da avaliacao
-  app.put('/avaliacao_fisica/:idAvaliacao', jsonParser, async function(req, res) {
+  app.put('/avaliacao_fisica/:idAvaliacao', jsonParser, async function (req, res) {
 
     var idAvaliacaoRecebida = req.params.idAvaliacao
 
@@ -196,7 +196,7 @@ module.exports = app => {
     var abdomenAluno = req.body.abdomen
     var bracoDireitoAluno = req.body.bracoDireito
     var bracoEsquerdoAluno = req.body.bracoEsquerdo
-    
+
     const conexao = admin.firestore();
 
     // busca todos os itens da coleção (await aguarda até obter todos os dados)

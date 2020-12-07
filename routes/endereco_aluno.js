@@ -6,7 +6,7 @@ module.exports = app => {
   var jsonParser = bodyParser.json()
 
   // cadastrar mapeamento endereco_aluno (funcionando)
-  app.post('/endereco_aluno', jsonParser, async function(req, res) {
+  app.post('/endereco_aluno', jsonParser, async function (req, res) {
     var id_endereco = req.body.idEndereco
     var id_aluno = req.body.idAluno
 
@@ -45,7 +45,7 @@ module.exports = app => {
 
 
   // atualizar endereco_aluno passando id do aluno
-  app.put('/endereco_aluno/:idAluno', jsonParser, async function(req, res) {
+  app.put('/endereco_aluno/:idAluno', jsonParser, async function (req, res) {
 
     var idAlunoRecebido = req.params.idAluno
 
@@ -53,7 +53,7 @@ module.exports = app => {
 
     // pegar dados put request 
     var idEnderecoRecebido = req.body.idEndereco
-    
+
     const conexao = admin.firestore();
 
     // busca todos os itens da coleção (await aguarda até obter todos os dados)
