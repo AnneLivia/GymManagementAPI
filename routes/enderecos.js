@@ -291,8 +291,19 @@ module.exports = app => {
       }			
     }
 
+     // primeira verificar enderecos_instrutor collections, se houver endereco la, remover também
+    let end_instrutorLista = await conexao.collection("anne_gym_endereco_instrutor").get()
 
-    // apos remover todos os endereocs_alunos, pode remover o endereco
+		for (let endeInstrutorDoc of end_instrutorLista.docs) {
+		  // se o dados contiver o id do endereco, entao salvar id do instrutor
+      var endeInstrutorData = endeInstrutorDoc.data();
+      if (endeInstrutorData.idEndereco == idEndereco) {
+        let deleteDoc = await conexao.collection("anne_gym_endereco_instrutor").doc(endeInstrutorDoc.id).delete()
+      }			
+    }
+
+
+    // apos remover todos os endereocs_alunos e endereco_instrtuor, pode remover o endereco
     let deleteDoc = await conexao.collection("anne_gym_enderecos").doc(idEndereco).delete()
 		
     res.send(deleteDoc);
