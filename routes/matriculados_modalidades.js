@@ -123,7 +123,7 @@ module.exports = app => {
   });
 
 
-  // atualizar matricula modalidade passando id da modalidade
+  // atualizar matricula modalidade passando id 
   app.put('/matriculados_modalidades/:idModalidade', jsonParser, async function (req, res) {
 
     var idMatriModalidadeRecebida = req.params.idModalidade
