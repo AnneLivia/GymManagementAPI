@@ -183,6 +183,17 @@ module.exports = app => {
       }
     }
 
+    // se aluno for removido, precisa remover as mensalidades também
+    let mensalidadesLista = await conexao.collection("anne_gym_mensalidades").get()
+
+    for (let mesDoc of mensalidadesLista.docs) {
+      // se o dado contiver o id do aluno, remover a mensalidade
+      var mesData = mesDoc.data();
+      if (mesData.idAluno == idAluno) {
+        let deleteDoc = await conexao.collection("anne_gym_mensalidades").doc(mesDoc.id).delete()
+      }
+    }
+
     res.send("Aluno removido do sistema");
   });
 
