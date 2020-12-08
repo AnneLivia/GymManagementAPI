@@ -118,7 +118,7 @@ POST:
 
 
 GET : 
-  - url da aplicação no servidor/equipamentos -> obtém todos os exercícios inclusos no sistema
+  - url da aplicação no servidor/exercicios -> obtém todos os exercícios inclusos no sistema
 
 PUT: 
   - url da aplicação no servidor/exercicios/:idExercicio -> altera os dados do exercício ao 
@@ -131,6 +131,33 @@ DELETE:
     Observação: ao remover o exercício do sistema, qualquer ficha de treino que utilize esse exercício 
     também é removida.
     
+```
+
+**Mensalidades:**
+```
+POST:
+{
+  "idAluno": "id do doc do aluno no firestore",
+  "mes": "fevereiro",
+  "pago": false,
+  "valor": "70,00"
+}
+
+GET : 
+  - url da aplicação no servidor/mensalidades -> obtém todas as mensalidades inclusas no sistema
+  - url da aplicação no servidor/mensalidades/pago -> obtém todas as mensalidades que foram pagas
+  - url da aplicação no servidor/mensalidades/naopago -> obtém todas as mensalidades que não foram pagas
+  - url da aplicação no servidor/mensalidades/aluno/email/:email -> obtém todas as mensalidades de um determinado usuario ao
+    indicar o email
+
+PUT: 
+  - url da aplicação no servidor/mensalidades/:idMensalidade -> altera os dados da mensalidade ao 
+    informar o id do doc da mensalidade correspondente. 
+  
+DELETE: 
+  - url da aplicação no servidor/mensalidades/:idMensalidade -> exclui os dados da mensalidade ao 
+    informar o id do doc da mensalidade correspondente.
+
 ```
 
 
