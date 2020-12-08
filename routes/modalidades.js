@@ -116,6 +116,18 @@ module.exports = app => {
 
     if (removeu) {
       let deleteDoc = await conexao.collection("anne_gym_modalidades").doc(idModalidade).delete()
+
+      // se modalidade for removida, precisa remover sua matricula em quaisquer modalidades
+      let matriculasLista = await conexao.collection("anne_gym_matriculados_modalidades").get()
+
+      for (let matrDoc of matriculasLista.docs) {
+        // se o dado contiver o id da modalidade, remover a matricula
+        var matrData = matrDoc.data();
+        if (matrData.idModalidade == idModalidade) {
+          let deleteDoc = await conexao.collection("anne_gym_matriculados_modalidades").doc(matrDoc.id).delete()
+        }
+      }
+
       res.send("Modalidade removida do sistema");
     } else
       res.send('Modalidade especificada não foi encontrada');

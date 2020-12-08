@@ -172,6 +172,17 @@ module.exports = app => {
       }
     }
 
+    // se aluno for removido, precisa remover sua matricula em quaisquer modalidades
+    let matriculasLista = await conexao.collection("anne_gym_matriculados_modalidades").get()
+
+    for (let matrDoc of matriculasLista.docs) {
+      // se o dado contiver o id do aluno, remover a matricula
+      var matrData = matrDoc.data();
+      if (matrData.idAluno == idAluno) {
+        let deleteDoc = await conexao.collection("anne_gym_matriculados_modalidades").doc(matrDoc.id).delete()
+      }
+    }
+
     res.send("Aluno removido do sistema");
   });
 
