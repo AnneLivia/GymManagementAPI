@@ -44,6 +44,85 @@ module.exports = app => {
     });
   });
 
+
+  // obter todas os matriculados em um modalidade, passar id da modalidade (funcionando)
+  app.get("/matriculados_modalidades/matriculaspormodalidade/:idModalidade", async (req, res) => {
+    const conexao = admin.firestore();
+
+    var todosOsMatriculados = []
+    var dados = []
+
+    var idModalidade = req.params.idModalidade
+
+    // busca todos os itens da coleção (await aguarda até obter todos os dados)
+    let modalidadesMatricList = await conexao.collection("anne_gym_matriculados_modalidades").get()
+
+    // pegar todos os ids dos alunos matriculadoos na modalidade
+    for (let modalidadesMatricDoc of modalidadesMatricList.docs) {
+      // pega o dado de cada documento e inserir na lista
+      if (modalidadesMatricDoc.data().idModalidade == idModalidade) {
+        todosOsMatriculados.push(modalidadesMatricDoc.data().idAluno)
+      }
+    }
+
+    if (!todosOsMatriculados.length) {
+      res.send("Não há matriculados para a modalidade especificada")
+    }
+
+    // pegar os dados dos alunos
+    let alunosList = await conexao.collection('anne_gym_alunos').get()
+    for (let alunosDoc of alunosList.docs) {
+      if (todosOsMatriculados.includes(alunosDoc.id)) {
+        dados.push(alunosDoc.data())
+      }
+    }
+
+    res.send({
+      modalidadeId: idModalidade,
+      matriculados: dados
+    });
+  });
+
+
+  // obter todas as modalidades de um aluno, passar id do aluno (funcionando)
+  app.get("/matriculados_modalidades/aluno/:idAluno", async (req, res) => {
+    const conexao = admin.firestore();
+
+    var todasAsModalidades = []
+    var dados = []
+
+    var idAluno = req.params.idAluno
+
+    // busca todos os itens da coleção (await aguarda até obter todos os dados)
+    let modalidadesMatricList = await conexao.collection("anne_gym_matriculados_modalidades").get()
+
+    // pegar todos os ids das modalidades em que o aluno especificado está matriculado
+    for (let modalidadesMatricDoc of modalidadesMatricList.docs) {
+      // pega o dado de cada documento e inserir na lista
+      if (modalidadesMatricDoc.data().idAluno == idAluno) {
+        todasAsModalidades.push(modalidadesMatricDoc.data().idModalidade)
+      }
+    }
+
+    if (!todasAsModalidades.length) {
+      res.send("Aluno não está matriculado em nenhuma modalidade ou não está cadastrado no sistema")
+    }
+
+    // pegar os dados das modalidades
+    let modalidadesList = await conexao.collection('anne_gym_modalidades').get()
+    for (let modalidadesDoc of modalidadesList.docs) {
+      if (todasAsModalidades.includes(modalidadesDoc.id)) {
+        dados.push(modalidadesDoc.data())
+      }
+    }
+
+    res.send({
+      alunoId: idAluno,
+      modalidades: dados
+    });
+  });
+
+
   // atualizar matricula modalidade passando id da modalidade
   app.put('/matriculados_modalidades/:idModalidade', jsonParser, async function (req, res) {
 
