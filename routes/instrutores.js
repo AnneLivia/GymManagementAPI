@@ -160,6 +160,14 @@ module.exports = app => {
       }
     }
 
+    /*
+      OBSERVAÇÃO
+      aluno além de remover o endereco_aluno em que está referenciado, remove ficha de treino, avaliacao e mensalidade
+      o instrutor está relacionado com ficha de treino e avaliacao também, mas ao remover o instrutor, a ficha e a avaliação
+      não é removida porque um instrutor pode sair e outro pode pegar os mesmos dados que o antigo instrutor havia cadastrado, 
+      basta editar com o PUT
+    */ 
+
     res.send("Instrutor removido do sistema");
   });
 
