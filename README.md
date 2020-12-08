@@ -45,10 +45,12 @@ GET :
   - url da aplicação no servidor/alunos/nome/:nome" -> obtém todos os alunos com o nome especificado
 
 PUT: 
-  - url da aplicação no servidor/alunos/email_do_aluno -> altera os dados referentes ao aluno do email especificado
+  - url da aplicação no servidor/alunos/email_do_aluno -> altera os dados referentes ao 
+    aluno do email especificado
   
 DELETE: 
-  - url da aplicação no servidor/alunos/email_do_aluno -> exclui todos os dados do aluno referente ao email especificado
+  - url da aplicação no servidor/alunos/email_do_aluno -> exclui todos os dados do aluno 
+    referente ao email especificado
   
   Observação: ao remover um aluno do sistema, seus dados referentes as avaliações, treinos, 
   endereços, mensalidades e matriculas em modalidades são igualmente removidos
@@ -68,15 +70,20 @@ POST:
 
 GET : 
   - url da aplicação no servidor/instrutores -> obtém todos os instrutores inclusos no sistema
-  - url da aplicação no servidor/instrutores/genero/:genero -> obtém todos os instrutores de um determinado genero
-  - url da aplicação no servidor/instrutores/email/:email -> obtém os dados do intrutor com o email especificado
-  - url da aplicação no servidor/instrutores/nome/:nome" -> obtém todos os instrutores com o nome especificado
+  - url da aplicação no servidor/instrutores/genero/:genero -> obtém todos os instrutores 
+    de um determinado genero
+  - url da aplicação no servidor/instrutores/email/:email -> obtém os dados do intrutor com 
+    o email especificado
+  - url da aplicação no servidor/instrutores/nome/:nome" -> obtém todos os instrutores com 
+    o nome especificado
 
 PUT: 
-  - url da aplicação no servidor/intrutores/email_do_instrutor -> altera os dados referentes ao instrutor do email especificado
+  - url da aplicação no servidor/intrutores/email_do_instrutor -> altera os dados referentes 
+    ao instrutor do email especificado
   
 DELETE: 
-  - url da aplicação no servidor/alunos/email_do_instrutor -> exclui todos os dados do intrutor referente ao email especificado
+  - url da aplicação no servidor/alunos/email_do_instrutor -> exclui todos os dados do intrutor 
+    referente ao email especificado
   
   Observação: ao remover o instrutor do sistema, somente seus dados referentes ao endereço são apagados. 
   suas informações presentes em avaliações e treinos permanecem
@@ -147,8 +154,8 @@ GET :
   - url da aplicação no servidor/mensalidades -> obtém todas as mensalidades inclusas no sistema
   - url da aplicação no servidor/mensalidades/pago -> obtém todas as mensalidades que foram pagas
   - url da aplicação no servidor/mensalidades/naopago -> obtém todas as mensalidades que não foram pagas
-  - url da aplicação no servidor/mensalidades/aluno/email/:email -> obtém todas as mensalidades de um determinado usuario ao
-    indicar o email
+  - url da aplicação no servidor/mensalidades/aluno/email/:email -> obtém todas as mensalidades de um 
+    determinado usuario ao indicar o email
 
 PUT: 
   - url da aplicação no servidor/mensalidades/:idMensalidade -> altera os dados da mensalidade ao 
@@ -200,10 +207,14 @@ POST:
 
 GET : 
   - url da aplicação no servidor/enderecos -> obtém todos os endereços inclusos no sistema
-  - url da aplicação no servidor/enderecos/aluno/email/:email -> obtém o endereço do aluno com o email especificado
-  - url da aplicação no servidor/enderecos/instrutor/email/:email -> obtém o endereço do instrutor com o email especificado
-  - url da aplicação no servidor/enderecos/aluno/cep/:cep -> obtém todos os alunos residentes no cep informado
-  - url da aplicação no servidor/enderecos/instrutor/cep/:cep -> obtém todos os instrutores residentes no cep informado
+  - url da aplicação no servidor/enderecos/aluno/email/:email -> obtém o endereço do aluno 
+    com o email especificado
+  - url da aplicação no servidor/enderecos/instrutor/email/:email -> obtém o endereço do 
+    instrutor com o email especificado
+  - url da aplicação no servidor/enderecos/aluno/cep/:cep -> obtém todos os alunos 
+    residentes no cep informado
+  - url da aplicação no servidor/enderecos/instrutor/cep/:cep -> obtém todos os instrutores 
+    residentes no cep informado
 
 PUT: 
   - url da aplicação no servidor/enderecos/:idendereco -> altera os dados do endereço ao 
@@ -213,8 +224,8 @@ DELETE:
   - url da aplicação no servidor/enderecos/:id-> exclui os dados do endereço ao 
     informar o id do doc do endereço correspondente.
     
-    Observação: ao remover o endereço do sistema, qualquer informação referente aos mapeamentos endereco_aluno e
-    endereco_instrutor que contenha o endereco especificado são igualmente removidas.
+    Observação: ao remover o endereço do sistema, qualquer informação referente aos mapeamentos 
+    endereco_aluno e endereco_instrutor que contenha o endereco especificado são igualmente removidas.
 ```
 
 **Mapeamento endereço-aluno:**
@@ -227,15 +238,18 @@ POST:
 
 
 GET : 
-  - url da aplicação no servidor/endereco_aluno -> obtém todos os mapeamentos endereço-aluno inclusos no sistema
+  - url da aplicação no servidor/endereco_aluno -> obtém todos os mapeamentos endereço-aluno 
+    inclusos no sistema
 
 PUT: 
-  - url da aplicação no servidor/endereco_aluno/:idAluno -> altera os dados do endereço de um determinado aluno ao 
-    informar o id do doc do aluno correspondente. (no sistema o ideal é um mapeamento um para um, para evitar conflitos)
+  - url da aplicação no servidor/endereco_aluno/:idAluno -> altera os dados do endereço de 
+    um determinado aluno ao informar o id do doc do aluno correspondente. 
+    (no sistema o ideal é um mapeamento um para um, para evitar conflitos)
   
 DELETE: 
-  - url da aplicação no servidor/endereco_aluno/:idAluno-> exclui os dados do mapeamento endereço-aluno ao 
-    informar o id do doc do aluno correspondente. (no sistema o ideal é um mapeamento um para um, para evitar conflitos)
+  - url da aplicação no servidor/endereco_aluno/:idAluno-> exclui os dados 
+    do mapeamento endereço-aluno ao informar o id do doc do aluno correspondente. 
+    (no sistema o ideal é um mapeamento um para um, para evitar conflitos)
 ```
 
 **Mapeamento endereço-instrutor:**
@@ -248,15 +262,18 @@ POST:
 
 
 GET : 
-  - url da aplicação no servidor/endereco_instrutor -> obtém todos os mapeamentos endereço-instrutor inclusos no sistema
+  - url da aplicação no servidor/endereco_instrutor -> obtém todos os mapeamentos 
+    endereço-instrutor inclusos no sistema
 
 PUT: 
-  - url da aplicação no servidor/endereco_instrutor/:idInstrutor -> altera os dados do endereço de um determinado instrutor ao 
-    informar o id do doc do instrutor correspondente. (no sistema o ideal é um mapeamento um para um, para evitar conflitos)
+  - url da aplicação no servidor/endereco_instrutor/:idInstrutor -> altera os dados do 
+    endereço de um determinado instrutor ao informar o id do doc do instrutor correspondente. 
+    (no sistema o ideal é um mapeamento um para um, para evitar conflitos)
   
 DELETE: 
-  - url da aplicação no servidor/endereco_instrutor/:idInstrutor -> exclui os dados do mapeamento endereço-instrutor ao 
-    informar o id do doc do instrutor correspondente. (no sistema o ideal é um mapeamento um para um, para evitar conflitos)
+  - url da aplicação no servidor/endereco_instrutor/:idInstrutor -> exclui os dados do 
+    mapeamento endereço-instrutor ao informar o id do doc do instrutor correspondente. 
+    (no sistema o ideal é um mapeamento um para um, para evitar conflitos)
 ```
 
 ### Observação importante: o id do endereço poderia ser salvo no próprio componente do aluno ou do instrutor, mas optou-se por criar dois componentes separados para se ter um maior controle sobre todos os endereços dos alunos e dos instrutores.
@@ -272,18 +289,18 @@ POST:
 
 GET : 
   - url da aplicação no servidor/matriculados_modalidades -> obtém todos os matriculados em modalidades
-  - url da aplicação no servidor/matriculados_modalidades/matriculaspormodalidade/:idModalidade -> obtém todos 
-    os matriculados em uma modalidade ao passar id do doc da modalidade correspondente.
-  - url da aplicação no servidor/matriculados_modalidades/aluno/:idAluno ->  obtém todas as modalidades de um aluno
-    ao passar o id do aluno correspondente
+  - url da aplicação no servidor/matriculados_modalidades/matriculaspormodalidade/:idModalidade -> obtém 
+    todos os matriculados em uma modalidade ao passar id do doc da modalidade correspondente.
+  - url da aplicação no servidor/matriculados_modalidades/aluno/:idAluno ->  obtém todas as 
+    modalidades de um aluno ao passar o id do aluno correspondente
 
 PUT: 
-  - url da aplicação no servidor/matriculados_modalidades/:idMatriculaModalidade -> altera os dados da matricula em modalidade ao 
-    informar o id do doc da matricula-modalidade correspondente. 
+  - url da aplicação no servidor/matriculados_modalidades/:idMatriculaModalidade -> altera os 
+    dados da matricula em modalidade ao informar o id do doc da matricula-modalidade correspondente. 
   
 DELETE: 
-  - url da aplicação no servidor/matriculados_modalidades/:idMatriculaModalidade -> exclui os dados da matricula-modalidade ao 
-    informar o id do doc da matricula-modalidade correspondente.
+  - url da aplicação no servidor/matriculados_modalidades/:idMatriculaModalidade -> exclui os 
+    dados da matricula-modalidade ao informar o id do doc da matricula-modalidade correspondente.
 ```
 
 **Avaliação Física:**
@@ -309,15 +326,17 @@ POST:
 
 
 GET : 
-  - url da aplicação no servidor/avaliacao_fisica -> obtém todas as avaliações físicas inseridas no sistemas
-  - url da aplicação no servidor/avaliacao_fisica/aluno/email/:email -> obtém todos as avaliacoes físicas 
+  - url da aplicação no servidor/avaliacao_fisica -> obtém todas as avaliações físicas 
+    inseridas no sistemas
+  - url da aplicação no servidor/avaliacao_fisica/aluno/email/:email -> obtém todos 
+    as avaliacoes físicas 
     de um determinado aluno ao especificar o email correspondente
-  - url da aplicação no servidor/avaliacao_fisica/instrutor/email/:email -> obtém todas as avaliacoes físicas realizadas por 
-    um determinado instrutor ao passar email correspondente
+  - url da aplicação no servidor/avaliacao_fisica/instrutor/email/:email -> obtém todas as 
+    avaliacoes físicas realizadas por um determinado instrutor ao passar email correspondente
 
 PUT: 
-  - url da aplicação no servidor/avaliacao_fisica/:idAvaliacao -> altera os dados da avaliação ao informar o 
-    id do doc da avaliação correspondente. 
+  - url da aplicação no servidor/avaliacao_fisica/:idAvaliacao -> altera os dados da 
+    avaliação ao informar o id do doc da avaliação correspondente. 
   
 DELETE: 
   - url da aplicação no servidor/avaliacao_fisica/:idAvaliacao -> exclui os dados da avaliação ao 
@@ -341,14 +360,14 @@ POST:
 
 GET : 
   - url da aplicação no servidor/fichas_treinos -> obtém todas as fichas de treino inseridas no sistemas
-  - url da aplicação no servidor/fichas_treinos/aluno/:idAluno -> obtém todas as fichas de treino de um determinado 
-    aluno ao especificar o id do doc do aluno correspondente
+  - url da aplicação no servidor/fichas_treinos/aluno/:idAluno -> obtém todas as fichas de treino de 
+    um determinado aluno ao especificar o id do doc do aluno correspondente
   - url da aplicação no servidor/fichas_treinos/exercicio/:idExercicio -> obtém todas as fichas de treino 
     de um determinado exercício ao passar o id do doc do exercício correspondente
 
 PUT: 
-  - url da aplicação no servidor/fichas_treinos/:idFicha -> altera os dados de uma ficha de treino ao informar o 
-    id do doc da ficha correspondente. 
+  - url da aplicação no servidor/fichas_treinos/:idFicha -> altera os dados de uma ficha 
+    de treino ao informar o id do doc da ficha correspondente. 
   
 DELETE: 
   - url da aplicação no servidor/fichas_treinos/:idFicha -> exclui os dados de uma ficha ao 
