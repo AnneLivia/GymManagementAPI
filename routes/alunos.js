@@ -194,6 +194,17 @@ module.exports = app => {
       }
     }
 
+    // se aluno for removido, precisa remover as fichas de treinos também
+    let fichaLista = await conexao.collection("anne_gym_fichas_treinos").get()
+
+    for (let fichaDoc of fichaLista.docs) {
+      // se o dado contiver o id do aluno, remover a ficha de treino
+      var fichaData = fichaDoc.data();
+      if (fichaData.idAluno == idAluno) {
+        let deleteDoc = await conexao.collection("anne_gym_fichas_treinos").doc(fichaDoc.id).delete()
+      }
+    }
+
     res.send("Aluno removido do sistema");
   });
 
