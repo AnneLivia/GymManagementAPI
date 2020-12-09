@@ -44,11 +44,11 @@ GET :
   - url da aplicação no servidor/alunos/nome/:nome" -> obtém todos os alunos com o nome especificado
 
 PUT: 
-  - url da aplicação no servidor/alunos/email_do_aluno -> altera os dados referentes ao 
+  - url da aplicação no servidor/alunos/:email_do_aluno -> altera os dados referentes ao 
     aluno do email especificado
   
 DELETE: 
-  - url da aplicação no servidor/alunos/email_do_aluno -> exclui todos os dados do aluno 
+  - url da aplicação no servidor/alunos/:email_do_aluno -> exclui todos os dados do aluno 
     referente ao email especificado
   
   Observação: ao remover um aluno do sistema, seus dados referentes as avaliações, treinos, mensalidades 
@@ -78,15 +78,14 @@ GET :
     o nome especificado
 
 PUT: 
-  - url da aplicação no servidor/intrutores/email_do_instrutor -> altera os dados referentes 
+  - url da aplicação no servidor/intrutores/:email_do_instrutor -> altera os dados referentes 
     ao instrutor do email especificado
   
 DELETE: 
-  - url da aplicação no servidor/alunos/email_do_instrutor -> exclui todos os dados do intrutor 
+  - url da aplicação no servidor/alunos/:email_do_instrutor -> exclui todos os dados do intrutor 
     referente ao email especificado
   
-  Observação: ao remover o instrutor do sistema, somente seus dados referentes ao endereço são apagados. 
-  suas informações presentes em avaliações e treinos permanecem
+  Observação:  suas informações presentes em avaliações e treinos permanecem
 ```
 
 **Equipamentos:**
