@@ -15,7 +15,7 @@ Alunos
 Avaliação física
 Endereços
 Equipamentos
-Exercicios
+Exercícios
 Fichas de Treinos
 Instrutores
 Modalidades
@@ -33,14 +33,14 @@ POST:
   "cpf" : "000.000.000-00",
   "numeroCelular" : "(00) 90000-0000",
   "email" : "emailAluno@gmail.com",
-  "genero" : "genero do aluno",
-  "idEndereco" : "id do doc do endereco no firestore"
+  "genero" : "gênero do aluno",
+  "idEndereco" : "id do doc do endereço no firestore"
 }
 
 GET : 
   - url da aplicação no servidor/alunos -> obtém todos os alunos inclusos no sistema
-  - url da aplicação no servidor/alunos/genero/:genero -> obtém todos os alunos de um determinado genero
-  - url da aplicação no servidor/alunos/email/:email -> obtém os dados do aluno com o email especificado
+  - url da aplicação no servidor/alunos/genero/:genero -> obtém todos os alunos de um determinado gênero
+  - url da aplicação no servidor/alunos/email/:email -> obtém os dados do aluno do email especificado
   - url da aplicação no servidor/alunos/nome/:nome" -> obtém todos os alunos com o nome especificado
 
 PUT: 
@@ -52,7 +52,7 @@ DELETE:
     referente ao email especificado
   
   Observação: ao remover um aluno do sistema, seus dados referentes as avaliações, treinos, mensalidades 
-  e matriculas em modalidades são igualmente removidos
+  e matrículas em modalidades são igualmente removidos
 ```
 
 **Instrutores:**
@@ -64,26 +64,26 @@ POST:
   "cpf" : "000.000.000-00",
   "numeroCelular" : "(00) 90000-0000",
   "email" : "emailInstrutor@gmail.com",
-  "genero" : "genero do intrutor",
+  "genero" : "gênero do Instrutor",
   "idEndereco" : "id do doc do endereco no firestore"
 }
 
 GET : 
   - url da aplicação no servidor/instrutores -> obtém todos os instrutores inclusos no sistema
   - url da aplicação no servidor/instrutores/genero/:genero -> obtém todos os instrutores 
-    de um determinado genero
-  - url da aplicação no servidor/instrutores/email/:email -> obtém os dados do intrutor com 
+    de um determinado gênero
+  - url da aplicação no servidor/instrutores/email/:email -> obtém os dados do instrutor com 
     o email especificado
   - url da aplicação no servidor/instrutores/nome/:nome" -> obtém todos os instrutores com 
     o nome especificado
 
 PUT: 
-  - url da aplicação no servidor/intrutores/:email_do_instrutor -> altera os dados referentes 
+  - url da aplicação no servidor/instrutores/:email_do_instrutor -> altera os dados referentes 
     ao instrutor do email especificado
   
 DELETE: 
-  - url da aplicação no servidor/alunos/:email_do_instrutor -> exclui todos os dados do instrutor 
-    referente ao email especificado
+  - url da aplicação no servidor/instrutores/:email_do_instrutor -> exclui todos os dados 
+    do instrutor do email especificado
   
   Observação: as informações do instrutor presentes em avaliações e treinos permanecem
 ```
@@ -118,7 +118,7 @@ DELETE:
 ```
 POST:
 {
-  "nome" : "Nome do exercicio",
+  "nome" : "Nome do exercício",
   "descricao" : "descrição do exercício como os benefícios e para que serve",
 }
 
@@ -279,9 +279,9 @@ GET :
   - url da aplicação no servidor/avaliacao_fisica -> obtém todas as avaliações físicas 
     inseridas no sistemas
   - url da aplicação no servidor/avaliacao_fisica/aluno/email/:email -> obtém todas 
-    as avaliacoes físicas de um determinado aluno ao especificar o email
+    as avaliações físicas de um determinado aluno ao especificar o email
   - url da aplicação no servidor/avaliacao_fisica/instrutor/email/:email -> obtém todas as 
-    avaliacoes físicas realizadas por um determinado instrutor ao passar email
+    avaliações físicas realizadas por um determinado instrutor ao passar email
 
 PUT: 
   - url da aplicação no servidor/avaliacao_fisica/:idAvaliacao -> altera os dados da 
