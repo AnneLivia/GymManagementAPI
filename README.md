@@ -82,10 +82,10 @@ PUT:
     ao instrutor do email especificado
   
 DELETE: 
-  - url da aplicação no servidor/alunos/:email_do_instrutor -> exclui todos os dados do intrutor 
+  - url da aplicação no servidor/alunos/:email_do_instrutor -> exclui todos os dados do instrutor 
     referente ao email especificado
   
-  Observação:  suas informações presentes em avaliações e treinos permanecem
+  Observação: as informações do instrutor presentes em avaliações e treinos permanecem
 ```
 
 **Equipamentos:**
@@ -187,8 +187,8 @@ DELETE:
   - url da aplicação no servidor/modalidades/:idModalidade -> exclui os dados da modalidade ao 
     informar o id do doc da modalidade correspondente.
     
-    Observação: ao remover a modalidade do sistema, qualquer informação referente a alunos matriculados
-    nesta modalidade são igualmente removidas.
+    Observação: ao remover a modalidade do sistema, todas as informações referente a alunos matriculados
+    nesta modalidade são removidas.
 ```
 
 **Endereços:**
@@ -223,8 +223,9 @@ DELETE:
   - url da aplicação no servidor/enderecos/:id-> exclui os dados do endereço ao 
     informar o id do doc do endereço correspondente.
     
-    Observação: ao remover o endereço do sistema, qualquer informação referente aos mapeamentos 
-    endereco_aluno e endereco_instrutor que contenha o endereco especificado são igualmente removidas.
+    Observação: se algum endereço for removido do sistema e este estiver especificado
+    como endereço de algum aluno ou instrutor, será necessário atualizar a informação referente 
+    ao idEndereco neste/nestes alunos e/ou instrutores em questão.
 ```
 
 **Matriculados em modalidades:**
@@ -277,11 +278,10 @@ POST:
 GET : 
   - url da aplicação no servidor/avaliacao_fisica -> obtém todas as avaliações físicas 
     inseridas no sistemas
-  - url da aplicação no servidor/avaliacao_fisica/aluno/email/:email -> obtém todos 
-    as avaliacoes físicas 
-    de um determinado aluno ao especificar o email correspondente
+  - url da aplicação no servidor/avaliacao_fisica/aluno/email/:email -> obtém todas 
+    as avaliacoes físicas de um determinado aluno ao especificar o email
   - url da aplicação no servidor/avaliacao_fisica/instrutor/email/:email -> obtém todas as 
-    avaliacoes físicas realizadas por um determinado instrutor ao passar email correspondente
+    avaliacoes físicas realizadas por um determinado instrutor ao passar email
 
 PUT: 
   - url da aplicação no servidor/avaliacao_fisica/:idAvaliacao -> altera os dados da 
