@@ -3,12 +3,12 @@
 ### Sistema de gerenciamento de academias que permite o controle das informações referentes aos alunos, instrutores, equipamentos adquiridos, matrículas, mensalidades, exercícios, modalidades, e muito mais.
 
 - Este sistema utiliza o Node JS para a criação de uma API REST e o Cloud Firestore para o armazenamento dos dados.
-- Em cada um dos componentes da aplicação faz-se o uso das requisições GET, POST, DELETE e PUT.
+- Em cada uma das entidades da aplicação faz-se o uso das requisições GET, POST, DELETE e PUT.
 - Todas as informações são recebidas no formato JSON. 
 - Todas as requisições PUT e POST devem incluir no header um 'content-type' de 'application/json' e o corpo da informação inserida deve ser um JSON válido.
 
 ### Para acessar o link do projeto no repl.it [clique aqui](https://repl.it/@Anne_LiviaLivia/GymManagementAPI)
-## Componentes do sistema
+## Entidades do sistema
 
 ```json
 Alunos
@@ -23,7 +23,7 @@ Matriculados na modalidade
 Mensalidade
 ```
 
-## Funcionalidades de cada componente
+## Funcionalidades de cada entidade
 **Alunos:**
 ```
 POST:
