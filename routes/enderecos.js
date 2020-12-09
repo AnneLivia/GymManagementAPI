@@ -60,35 +60,19 @@ module.exports = app => {
     let alunosLista = await conexao.collection("anne_gym_alunos").get()
 
     var email = req.params.email
-    var idAluno = ""
+    var idEndereco = ""
     for (let alunoDoc of alunosLista.docs) {
       // pega o dado de cada documento 
       var alunoData = alunoDoc.data();
       if (alunoData.email.toString().toLowerCase() == email.toString().toLowerCase()) {
-        idAluno = alunoDoc.id
+        idEndereco = alunoData.idEndereco
         break;
       }
     }
 
-
-    if (idAluno == "") {
-      res.send("Email não cadastrado no sistema")
-    }
-
-    // obter da lista de endereco_aluno, o id do endereco
-    let endeAlunoLista = await conexao.collection("anne_gym_endereco_aluno").get()
-    var idEndereco = ""
-    for (let endAlunoList of endeAlunoLista.docs) {
-      // pega o dado de cada documento 
-      var endeAlunoData = endAlunoList.data();
-      if (endeAlunoData.idAluno == idAluno) {
-        idEndereco = endeAlunoData.idEndereco
-        break;
-      }
-    }
 
     if (idEndereco == "") {
-      res.send("Endereço do aluno não foi cadastrado ainda")
+      res.send("Email não cadastrado no sistema")
     }
 
     // obter lista de enderecos e exibir o endereco referente ao id obtido em endereco_aluno
@@ -113,35 +97,18 @@ module.exports = app => {
     let instrutorLista = await conexao.collection("anne_gym_instrutores").get()
 
     var email = req.params.email
-    var idInstrutor = ""
+    var idEndereco = ""
     for (let instrutorDoc of instrutorLista.docs) {
       // pega o dado de cada documento 
       var istrutorData = instrutorDoc.data();
       if (istrutorData.email.toString().toLowerCase() == email.toString().toLowerCase()) {
-        idInstrutor = instrutorDoc.id
-        break;
-      }
-    }
-
-
-    if (idInstrutor == "") {
-      res.send("Email não cadastrado no sistema")
-    }
-
-    // obter da lista de endereco_instrutor, o id do endereco
-    let endeInstrutorLista = await conexao.collection("anne_gym_endereco_instrutor").get()
-    var idEndereco = ""
-    for (let endInstrutorDoc of endeInstrutorLista.docs) {
-      // pega o dado de cada documento 
-      var endInstrutorData = endInstrutorDoc.data();
-      if (endInstrutorData.idInstrutor == idInstrutor) {
-        idEndereco = endInstrutorData.idEndereco
+        idEndereco = istrutorData.idEndereco
         break;
       }
     }
 
     if (idEndereco == "") {
-      res.send("Endereço do instrutor não foi cadastrado ainda")
+      res.send("Email não cadastrado no sistema")
     }
 
     // obter lista de enderecos e exibir o endereco referente ao id obtido em endereco_instrutor
@@ -181,34 +148,20 @@ module.exports = app => {
       res.send('Nenhum endereço cadastrado no sistema com o cep especificado')
     }
 
-
-    let end_alunoLista = await conexao.collection("anne_gym_endereco_aluno").get()
-
-    var todosOsAlunosIds = []
-
-    for (let endeAlunoDoc of end_alunoLista.docs) {
-      // se o dados contiver o id do endereco, entao salvar id do aluno
-      var endeAlunoData = endeAlunoDoc.data();
-      if (dados.includes(endeAlunoData.idEndereco)) {
-        todosOsAlunosIds.push(endeAlunoData.idAluno);
-      }
-    }
-
-    if (!todosOsAlunosIds.length) {
-      res.send('Nenhum aluno residente no endereço especificado')
-    }
-
     // busca todos os itens da coleção alunos (await aguarda até obter todos os dados)
     let alunosLista = await conexao.collection("anne_gym_alunos").get()
     var dadosAlunos = []
     for (let alunoDoc of alunosLista.docs) {
       // pega o dado de cada documento 
       var alunoData = alunoDoc.data();
-      if (todosOsAlunosIds.includes(alunoDoc.id)) {
+      if (dados.includes(alunoData.idEndereco)) {
         dadosAlunos.push(alunoData);
       }
     }
 
+    if (!dadosAlunos.length) {
+      res.send('Nenhum aluno residente no endereço especificado')
+    }
 
     res.send({ alunos: dadosAlunos });
 
@@ -238,34 +191,20 @@ module.exports = app => {
       res.send('Nenhum endereço cadastrado no sistema com o cep especificado')
     }
 
-
-    let end_InstrutorLista = await conexao.collection("anne_gym_endereco_instrutor").get()
-
-    var todosOsInstrutoresIds = []
-
-    for (let endInstrutorDoc of end_InstrutorLista.docs) {
-      // se o dados contiver o id do endereco, entao salvar id do instrutor
-      var endeInstrutorData = endInstrutorDoc.data();
-      if (dados.includes(endeInstrutorData.idEndereco)) {
-        todosOsInstrutoresIds.push(endeInstrutorData.idInstrutor);
-      }
-    }
-
-    if (!todosOsInstrutoresIds.length) {
-      res.send('Nenhum instrutor residente no endereço especificado')
-    }
-
     // busca todos os itens da coleção instrutor (await aguarda até obter todos os dados)
     let instrutorLista = await conexao.collection("anne_gym_instrutores").get()
     var dadosInstrutores = []
     for (let intrutorDoc of instrutorLista.docs) {
       // pega o dado de cada documento 
       var instrutorData = intrutorDoc.data();
-      if (todosOsInstrutoresIds.includes(intrutorDoc.id)) {
+      if (dados.includes(instrutorData.idEndereco)) {
         dadosInstrutores.push(instrutorData);
       }
     }
 
+    if (!dadosInstrutores.length) {
+      res.send('Nenhum instrutor residente no endereço especificado')
+    }
 
     res.send({ instrutores: dadosInstrutores });
 
@@ -278,30 +217,6 @@ module.exports = app => {
 
 
     var idEndereco = req.params.id
-
-
-    // primeira verificar enderecos_alunos collections, se houver endereco la, remover também
-    let end_alunoLista = await conexao.collection("anne_gym_endereco_aluno").get()
-
-    for (let endeAlunoDoc of end_alunoLista.docs) {
-      // se o dados contiver o id do endereco, entao salvar id do aluno
-      var endeAlunoData = endeAlunoDoc.data();
-      if (endeAlunoData.idEndereco == idEndereco) {
-        let deleteDoc = await conexao.collection("anne_gym_endereco_aluno").doc(endeAlunoDoc.id).delete()
-      }
-    }
-
-    // primeira verificar enderecos_instrutor collections, se houver endereco la, remover também
-    let end_instrutorLista = await conexao.collection("anne_gym_endereco_instrutor").get()
-
-    for (let endeInstrutorDoc of end_instrutorLista.docs) {
-      // se o dados contiver o id do endereco, entao salvar id do instrutor
-      var endeInstrutorData = endeInstrutorDoc.data();
-      if (endeInstrutorData.idEndereco == idEndereco) {
-        let deleteDoc = await conexao.collection("anne_gym_endereco_instrutor").doc(endeInstrutorDoc.id).delete()
-      }
-    }
-
 
     // apos remover todos os endereocs_alunos e endereco_instrtuor, pode remover o endereco
     let deleteDoc = await conexao.collection("anne_gym_enderecos").doc(idEndereco).delete()

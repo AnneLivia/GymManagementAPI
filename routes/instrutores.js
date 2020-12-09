@@ -13,6 +13,7 @@ module.exports = app => {
     var emailInstrutor = req.body.email
     var data = req.body.dataNascimento
     var generoInstrutor = req.body.genero
+    var idEnderecoRecebido = req.body.idEndereco
 
     const conexao = admin.firestore();
 
@@ -24,7 +25,8 @@ module.exports = app => {
         numeroCelular: celular,
         email: emailInstrutor,
         dataNascimento: data,
-        genero: generoInstrutor
+        genero: generoInstrutor,
+        idEndereco: idEnderecoRecebido
       }
     );
     res.send('Cadastrado com sucesso.')
@@ -149,25 +151,6 @@ module.exports = app => {
 
     let deleteDoc = await conexao.collection("anne_gym_instrutores").doc(idinstrutor).delete()
 
-    // remover o endereco_instrutor também, já que esse instrutor não existe mais
-    let end_instrutorLista = await conexao.collection("anne_gym_endereco_instrutor").get()
-
-    for (let endeInstrutorDoc of end_instrutorLista.docs) {
-      // se o dados contiver o id do endereco, entao salvar id do instrutor
-      var endeInstrutorData = endeInstrutorDoc.data();
-      if (endeInstrutorData.idInstrutor == idinstrutor) {
-        let deleteDoc = await conexao.collection("anne_gym_endereco_instrutor").doc(endeInstrutorDoc.id).delete()
-      }
-    }
-
-    /*
-      OBSERVAÇÃO
-      aluno além de remover o endereco_aluno em que está referenciado, remove ficha de treino, avaliacao e mensalidade
-      o instrutor está relacionado com ficha de treino e avaliacao também, mas ao remover o instrutor, a ficha e a avaliação
-      não é removida porque um instrutor pode sair e outro pode pegar os mesmos dados que o antigo instrutor havia cadastrado, 
-      basta editar com o PUT
-    */ 
-
     res.send("Instrutor removido do sistema");
   });
 
@@ -182,6 +165,7 @@ module.exports = app => {
     var emailInstrutor = req.body.email
     var data = req.body.dataNascimento
     var generoInstrutor = req.body.genero
+    var idEnderecoRecebido = req.body.idEndereco
 
     const conexao = admin.firestore();
 
@@ -212,6 +196,8 @@ module.exports = app => {
           data = instrutorData.dataNascimento
         if (generoInstrutor == undefined)
           generoInstrutor = instrutorData.genero
+        if (idEnderecoRecebido == undefined)
+          idEnderecoRecebido = instrutorData.idEndereco
 
         break;
       }
@@ -235,7 +221,8 @@ module.exports = app => {
         numeroCelular: celular,
         email: emailInstrutor,
         dataNascimento: data,
-        genero: generoInstrutor
+        genero: generoInstrutor,
+        idEndereco: idEnderecoRecebido
       }
     );
     res.send('Atualizado com sucesso.')

@@ -1,21 +1,19 @@
 # Gym Management API Documentation
 ## Developed by [Anne Livia da F. Macedo](https://github.com/annelivia)
-### Sistema de gerenciamento de academias que permite o controle das informações referentes aos alunos, instrutores, equipamentos adquiridos, matriculas, mensalidades, exercicios, modalidades, e muito mais.
+### Sistema de gerenciamento de academias que permite o controle das informações referentes aos alunos, instrutores, equipamentos adquiridos, matrículas, mensalidades, exercícios, modalidades, e muito mais.
 
 - Este sistema utiliza o Node JS para a criação de uma API REST e o Cloud Firestore para o armazenamento dos dados.
-- Em cada um dos componetes da aplicação faz-se o uso das requisições GET, POST, DELETE e PUT.
+- Em cada um dos componentes da aplicação faz-se o uso das requisições GET, POST, DELETE e PUT.
 - Todas as informações são recebidas no formato JSON. 
 - Todas as requisições PUT e POST devem incluir no header um 'content-type' de 'application/json' e o corpo da informação inserida deve ser um JSON válido.
 
-### Para acessar link do projeto no repl.it [clique aqui](https://repl.it/@Anne_LiviaLivia/GymManagementAPI)
-## Compomentes do sistema
+### Para acessar o link do projeto no repl.it [clique aqui](https://repl.it/@Anne_LiviaLivia/GymManagementAPI)
+## Componentes do sistema
 
 ```json
 Alunos
 Avaliação física
 Endereços
-  > endereços de instrutores
-  > endereços de alunos
 Equipamentos
 Exercicios
 Fichas de Treinos
@@ -35,7 +33,8 @@ POST:
   "cpf" : "000.000.000-00",
   "numeroCelular" : "(00) 90000-0000",
   "email" : "emailAluno@gmail.com",
-  "genero" : "genero do aluno"
+  "genero" : "genero do aluno",
+  "idEndereco" : "id do doc do endereco no firestore"
 }
 
 GET : 
@@ -52,8 +51,8 @@ DELETE:
   - url da aplicação no servidor/alunos/email_do_aluno -> exclui todos os dados do aluno 
     referente ao email especificado
   
-  Observação: ao remover um aluno do sistema, seus dados referentes as avaliações, treinos, 
-  endereços, mensalidades e matriculas em modalidades são igualmente removidos
+  Observação: ao remover um aluno do sistema, seus dados referentes as avaliações, treinos, mensalidades 
+  e matriculas em modalidades são igualmente removidos
 ```
 
 **Instrutores:**
@@ -65,7 +64,8 @@ POST:
   "cpf" : "000.000.000-00",
   "numeroCelular" : "(00) 90000-0000",
   "email" : "emailInstrutor@gmail.com",
-  "genero" : "genero do intrutor"
+  "genero" : "genero do intrutor",
+  "idEndereco" : "id do doc do endereco no firestore"
 }
 
 GET : 
@@ -227,56 +227,6 @@ DELETE:
     Observação: ao remover o endereço do sistema, qualquer informação referente aos mapeamentos 
     endereco_aluno e endereco_instrutor que contenha o endereco especificado são igualmente removidas.
 ```
-
-**Mapeamento endereço-aluno:**
-```
-POST:
-{
-  "idAluno" : "id do doc do aluno no firestore",
-  "idEndereco" : "id do doc do endereço no firestore"
-}
-
-
-GET : 
-  - url da aplicação no servidor/endereco_aluno -> obtém todos os mapeamentos endereço-aluno 
-    inclusos no sistema
-
-PUT: 
-  - url da aplicação no servidor/endereco_aluno/:idAluno -> altera os dados do endereço de 
-    um determinado aluno ao informar o id do doc do aluno correspondente. 
-    (no sistema o ideal é um mapeamento um para um, para evitar conflitos)
-  
-DELETE: 
-  - url da aplicação no servidor/endereco_aluno/:idAluno-> exclui os dados 
-    do mapeamento endereço-aluno ao informar o id do doc do aluno correspondente. 
-    (no sistema o ideal é um mapeamento um para um, para evitar conflitos)
-```
-
-**Mapeamento endereço-instrutor:**
-```
-POST:
-{
-  "idInstrutor" : "id do doc do intrutor no firestore",
-  "idEndereco" : "id do doc do endereço no firestore"
-}
-
-
-GET : 
-  - url da aplicação no servidor/endereco_instrutor -> obtém todos os mapeamentos 
-    endereço-instrutor inclusos no sistema
-
-PUT: 
-  - url da aplicação no servidor/endereco_instrutor/:idInstrutor -> altera os dados do 
-    endereço de um determinado instrutor ao informar o id do doc do instrutor correspondente. 
-    (no sistema o ideal é um mapeamento um para um, para evitar conflitos)
-  
-DELETE: 
-  - url da aplicação no servidor/endereco_instrutor/:idInstrutor -> exclui os dados do 
-    mapeamento endereço-instrutor ao informar o id do doc do instrutor correspondente. 
-    (no sistema o ideal é um mapeamento um para um, para evitar conflitos)
-```
-
-### Observação importante: o id do endereço poderia ser salvo no próprio componente do aluno ou do instrutor, mas optou-se por criar dois componentes separados para se ter um maior controle sobre todos os endereços dos alunos e dos instrutores.
 
 **Matriculados em modalidades:**
 ```

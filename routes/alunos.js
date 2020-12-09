@@ -13,6 +13,7 @@ module.exports = app => {
     var emailAluno = req.body.email
     var data = req.body.dataNascimento
     var generoAluno = req.body.genero
+    var idEnderecoRecebido = req.body.idEndereco
 
     const conexao = admin.firestore();
 
@@ -24,7 +25,8 @@ module.exports = app => {
         numeroCelular: celular,
         email: emailAluno,
         dataNascimento: data,
-        genero: generoAluno
+        genero: generoAluno,
+        idEndereco: idEnderecoRecebido
       }
     );
     res.send('Cadastrado com sucesso.')
@@ -150,17 +152,6 @@ module.exports = app => {
 
     let deleteDoc = await conexao.collection("anne_gym_alunos").doc(idAluno).delete()
 
-    // remover o mapemaneto endereco_aluno, se houver, também, já que esse aluno não existe mais
-    let end_alunoLista = await conexao.collection("anne_gym_endereco_aluno").get()
-
-    for (let endeAlunoDoc of end_alunoLista.docs) {
-      // se o dado contiver o id do aluno, remover o mapeamento endereço aluno
-      var endeAlunoData = endeAlunoDoc.data();
-      if (endeAlunoData.idAluno == idAluno) {
-        let deleteDoc = await conexao.collection("anne_gym_endereco_aluno").doc(endeAlunoDoc.id).delete()
-      }
-    }
-
     // remover as avaliacoes referentes ao aluno a ser removido, se houver, também, já que esse aluno não existe mais
     let avaliacaoLista = await conexao.collection("anne_gym_avaliacao_fisica").get()
 
@@ -219,6 +210,7 @@ module.exports = app => {
     var emailAluno = req.body.email
     var data = req.body.dataNascimento
     var generoAluno = req.body.genero
+    var idEnderecoRecebido = req.body.idEndereco
 
     const conexao = admin.firestore();
 
@@ -249,6 +241,8 @@ module.exports = app => {
           data = alunoData.dataNascimento
         if (generoAluno == undefined)
           generoAluno = alunoData.genero
+        if (idEnderecoRecebido == undefined)
+          idEnderecoRecebido = alunoData.idEndereco
 
         break;
       }
@@ -272,7 +266,8 @@ module.exports = app => {
         numeroCelular: celular,
         email: emailAluno,
         dataNascimento: data,
-        genero: generoAluno
+        genero: generoAluno,
+        idEndereco: idEnderecoRecebido
       }
     );
     res.send('Atualizado com sucesso.')
