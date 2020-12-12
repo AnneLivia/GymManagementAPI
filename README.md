@@ -93,8 +93,8 @@ DELETE:
 POST:
 {
   "nome" : "Nome do Equipamento",
-  "quantidade" : "6",
-  "preco" : "3.099,99",
+  "quantidade" : 6,
+  "preco" : 3.099.99,
   "pago" : true
 }
 
@@ -146,7 +146,7 @@ POST:
   "idAluno": "id do doc do aluno no firestore",
   "mes": "fevereiro",
   "pago": false,
-  "valor": "70,00"
+  "valor": 70.00
 }
 
 GET : 
@@ -200,7 +200,7 @@ POST:
   "cep" : "00000-00",
   "bairro": "Bairro XXXX",
   "complemento" : "Próximo a algum lugar",
-  "numero" : "0000"
+  "numero" : "0000XX"
 }
 
 
@@ -259,19 +259,19 @@ POST:
 {
   "idAluno": "id do doc do aluno no firestore",
   "idInstrutor": "id do doc do instrutor no firestore",
-  "peso": "00,0",
-  "altura": "0.00",
-  "imc": "00,00",
+  "peso": 00.0,
+  "altura": 00.0,
+  "imc": 00.0,
   "classificaoImc": "Normal",
-  "cintura": "00,0",
-  "quadril": "00,0",
-  "pernaDireita": "00,0",
-  "pernaEsquerda": "00,0",
-  "coxaDireita": "00,0",
-  "coxaEsquerda": "00,0",
-  "abdomen": "00,0",
-  "bracoDireito": "00,0",
-  "bracoEsquerdo": "00,0"
+  "cintura": 00.0,
+  "quadril": 00.0,
+  "pernaDireita": 00.0,
+  "pernaEsquerda": 00.0,
+  "coxaDireita": 00.0,
+  "coxaEsquerda": 00.0,
+  "abdomen": 00.0,
+  "bracoDireito": 00.0,
+  "bracoEsquerdo": 00.0
 }
 
 
@@ -299,9 +299,9 @@ POST:
   "idAluno": "id do doc do aluno no firestore",
   "idExercicio": "id do doc do exercicio no firestore",
   "idInstrutor": "id do doc do instrutor no firestore",
-  "series": "3",
-  "repeticao": "10",
-  "intervalo": "1",
+  "series": 3,
+  "repeticao": 10,
+  "intervalo": 1,
   "mesInicio": "janeiro",
   "quantidadeDias": 5,
 }
